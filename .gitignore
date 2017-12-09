@@ -1,32 +1,72 @@
-# Prerequisites
-*.d
+#include<iostream>
+using namespace std;
+#define SIN_TIPO string
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
 
-# Precompiled Headers
-*.gch
-*.pch
+// /Se desea obtener la nómina semanal-salario neto- de los empleados de una empresa cuyo trabajo se paga por horas y del modo siguiente:
+// /Las horas inferiores o iguales a 35 horas (normales) se pagan a una tarifa determinada que se debe introducir por el teclado al igual que el número de horas y el nombre del trabajador.
+// /Las horas superiores a 35 se pagarán como extras a un promedio de 1.5 horas normales.
+// /Los impuestos a deducir a los trabajadores varían en función de su sueldo mensual
+// sueldo<=2.000, libre de impuestos//
+// las siguientes 220 euros al 20 por 100//
+// el resto, al 30 por 100//
+// Basado en el libro de Fundamentos de Programación de Luis Joyanes Aguilar//
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+int main() {
+	float horas_trabajadas;
+	float impuestos;
+	SIN_TIPO nombre_completo_del_trabajador;
+	float salario_neto;
+	float sueldo;
+	float tarifa_por_hora;
+	// Se dice para que es lo que va a hacer el programa//
+	cout << "--SISTEMA DE CALCULO DEL SALARIO DE LOS TRABAJADORES--" << endl;
+	cout << "Version 1.0" << endl;
+	// Se pide el nombre del empleado//
+	cout << "Ingrese el nombre del trabajador:" << endl;
+	// Se introduce el nombre del empleado//
+	cin >> nombre_completo_del_trabajador;
+	// El sistema pide en pantalla las horas trabajadas//
+	cout << "Ingrese el valor de horas trabajadas:";
+	// El usuario escribe(responde) las horas//
+	cin >> horas_trabajadas;
+	// El sistema pide en pantalla el suelto por hora//
+	cout << "Ingrese el valor de tarifa por hora:";
+	// El usuario escribe(responde) el precio por hora//
+	cin >> tarifa_por_hora;
+	// Sueldo es igual a las horas por su corrrespondiente tarifa//
+	sueldo = horas_trabajadas*tarifa_por_hora;
+	// Si las horas trabajadas son mayores a 35 entonces//
+	if (horas_trabajadas>35) {
+		// se obtiene el modo como se calcula el suelo)
+		sueldo = sueldo+(horas_trabajadas-35)*tarifa_por_hora*1.5;
+	}
+	// Final si el salario es menor a 2000//
+	impuestos = 0;
+	// Si el salario es menor o igual a 2000 entonces//
+	if (sueldo<=2000) {
+		// no hay impuesto//
+		impuestos = sueldo*0;
+	}
+	// si el salario es mayor de 2000 y menor o igual de 2200//
+	if ((sueldo>2000) && (sueldo<=2200)) {
+		// el impuesto es el 20%//
+		impuestos = sueldo*0.2;
+	}
+	// si el sueldo es mayor a 2200 entonces//
+	if (sueldo>2220) {
+		// se recalcula el impuesto//
+		impuestos = (sueldo-2200)*0.3+(220*0.20);
+	}
+	// el salario neto es el resultado del salario menos impuestos//
+	salario_neto = sueldo-impuestos;
+	// Se imprime el nombre del trabajador//
+	cout << "Nombre del trabajador: " << nombre_completo_del_trabajador << endl;
+	// Se imprime el valor de impuestos//
+	cout << "Valor de impuestos: " << impuestos << endl;
+	// Se imprime el salario neto total sin impuesto//
+	cout << "Valor de salario neto: " << salario_neto << endl;
+	// Se imprime el sueldo//
+	cout << "Valor de sueldo: " << sueldo << endl;
+	return 0;
+}
